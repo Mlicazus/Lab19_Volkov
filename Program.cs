@@ -16,18 +16,18 @@
 // Console.WriteLine(CountCharacter("Код 2026", ' '));
 // Console.WriteLine(CountCharacter("", 'а'));
 
-// int CountCharacter(string text, char target)
-// {
-//     int count = 0;
-//     for (int i = 0; i < text.Length; i++)
-//     {
-//         if (text[i] == target)
-//         {
-//             count++;
-//         }
-//     }
-//     return count;
-// }
+int CountCharacter(string text, char target)
+{
+    int count = 0;
+    for (int i = 0; i < text.Length; i++)
+    {
+        if (text[i] == target)
+        {
+            count++;
+        }
+    }
+    return count;
+}
 // System.Console.WriteLine(CountCharacter("мама", 'м'));
 // System.Console.WriteLine(CountCharacter("", 'м'));
 
@@ -36,30 +36,30 @@
 // System.Console.WriteLine(char.IsLetter('a'));
 // System.Console.WriteLine(char.IsDigit('1'));
 
-// int CountDigits(string text)
-// {
-//     int count = 0;
-//     foreach (char symbol in text)
-//     {
-//         if (char.IsDigit(symbol))
-//         {
-//             count++;
-//         }
-//     }
-//     return count;
-// }
-// int CountLetters(string text)
-// {
-//     int count = 0;
-//     foreach (char symbol in text)
-//     {
-//         if (char.IsLetter(symbol))
-//         {
-//             count++;
-//         }
-//     }
-//     return count;
-// }
+int CountDigits(string text)
+{
+    int count = 0;
+    foreach (char symbol in text)
+    {
+        if (char.IsDigit(symbol))
+        {
+            count++;
+        }
+    }
+    return count;
+}
+int CountLetters(string text)
+{
+    int count = 0;
+    foreach (char symbol in text)
+    {
+        if (char.IsLetter(symbol))
+        {
+            count++;
+        }
+    }
+    return count;
+}
 // Console.WriteLine(CountDigits("Код 2026!"));
 // Console.WriteLine(CountLetters("Код 2026!"));
 
@@ -79,17 +79,17 @@
 
 // 5. Поиск символа и его индекса:
 
-// int FindCharacterIndex(string text, char target)
-// {
-//     for (int i = 0; i < text.Length; i++)
-//     {
-//         if (text[i] == target)
-//         {
-//             return i;
-//         }
-//     }
-//     return -1;
-// }
+int FindCharacterIndex(string text, char target)
+{
+    for (int i = 0; i < text.Length; i++)
+    {
+        if (text[i] == target)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 // Console.WriteLine(FindCharacterIndex("banana", 'a'));
 // Console.WriteLine(FindCharacterIndex("banana", 'b'));
 // Console.WriteLine(FindCharacterIndex("banana", 'z'));
@@ -109,3 +109,65 @@
 //     return index;
 // }
 // System.Console.WriteLine(FindCharacterIndex("banana", 'a'));
+
+// 6. Преобразование строк:
+
+// string sample = " Привет, C#! ";
+// string trimmed = sample.Trim();
+// string upper = sample.ToUpper();
+// string lower = sample.ToLower();
+// string replaced = sample.Replace(' ', '_');
+// Console.WriteLine($"Исходная: [{sample}]");
+// Console.WriteLine($"Без пробелов по краям: [{trimmed}]");
+// Console.WriteLine($"Верхний регистр: [{upper}]");
+// Console.WriteLine($"Нижний регистр: [{lower}]");
+// Console.WriteLine($"Замена пробелов: [{replaced}]");
+
+// string sample = " кот ";
+// sample = sample.Trim();
+// Console.WriteLine($"[{sample}]");
+
+// 7. Разделение строки на слова:
+
+// int CountWords(string text)
+// {
+//     string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+//     return words.Length;
+// }
+// Console.WriteLine(CountWords("Я изучаю C#"));
+// Console.WriteLine(CountWords(" кот дом "));
+// Console.WriteLine(CountWords(""));
+// Console.WriteLine(CountWords(" "));
+
+int CountWords(string text)
+{
+    string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    return words.Length;
+}
+System.Console.WriteLine(CountWords(" кот дом "));
+
+// 8. Основная часть — «Анализатор строки»:
+
+Console.Write("Введите строку: ");
+string text = Console.ReadLine() ?? "";
+System.Console.WriteLine(">>> Анализ строки <<<");
+System.Console.WriteLine();
+System.Console.WriteLine($"Исходная строка: [{text}]");
+System.Console.WriteLine($"Длина: [{text.Length}]");
+System.Console.WriteLine($"Букв: [{CountLetters(text)}]");
+System.Console.WriteLine($"Цифр: [{CountDigits(text)}]");
+System.Console.WriteLine($"Пробелов: [{CountCharacter(text, ' ')}]");
+System.Console.WriteLine($"Слов: [{CountWords(text)}]");
+System.Console.WriteLine($"Без пробелов по краям: [{text.Trim()}]");
+System.Console.WriteLine($"Верхний регистр: [{text.ToUpper()}]");
+System.Console.WriteLine($"Замена пробелов: [{text.Replace(' ', '_')}]");
+Console.Write("Введите один символ для поиска: ");
+char target = Convert.ToChar(Console.ReadLine());
+if (FindCharacterIndex(text, target) != -1)
+{
+    System.Console.WriteLine($"Первый индекс: {FindCharacterIndex(text, target)}");
+}
+else
+{
+    System.Console.WriteLine("Символ не найден");
+}
